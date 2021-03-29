@@ -1,4 +1,6 @@
 const puppeteer = require("puppeteer");
+const fbDatabse = require("./firebase");
+
 const fetchBatches = async () => {
   const browser = await puppeteer.launch({
     args: ["--no-sandbox"],
@@ -18,6 +20,8 @@ const fetchBatches = async () => {
     return batch;
   });
   await browser.close();
+  await fbDatabse.ref(`batchList`).set(result);
+
   return result;
 };
 

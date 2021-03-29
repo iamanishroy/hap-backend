@@ -42,7 +42,12 @@ app.post("/batch", (req, res) => {
 
 app.post("/timetable", (req, res) => {
   var data = req.body;
-  fetchTimeTable(data.day, data.month, data.year, data.batchID)
+  fetchTimeTable(
+    data.data.day,
+    data.data.month,
+    data.data.year,
+    data.data.batchID
+  )
     .then((timetable) => {
       res.status(200).json(timetable);
     })
